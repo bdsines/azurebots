@@ -1,18 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { ActivityHandler, MessageFactory } = require('botbuilder');
+const { ActivityHandler, MessageFactory, ActivityTypes } = require('botbuilder');
 
 class EchoBot extends ActivityHandler {
     constructor() {
         super();
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
-            console.log("context",context);
-            const replyText = `Echo: ${ context.activity.text } ${context.activity.from.name}`;
-            await context.sendActivity(MessageFactory.text(replyText, replyText));
-            // By calling next() you ensure that the next BotHandler is run.
+            if (context.activity.text === 'wait') {
+                await context.sendActivities([
+                    { type: ActivityTypes.Typing },
+                    { type: 'delay', value: 3000 },
+                    { type: ActivityTypes.Message, text: 'Finished typing' }
+                ]);
+            } else {
+                await context.sendActivity(`You said '${ context.activity.text }'. Say "wait" to watch me type.`);
+            }
             await next();
+            // console.log("context",context);
+            // const replyText = `Echo: ${ context.activity.text } ${context.activity.from.name}`;
+            // await context.sendActivity(MessageFactory.text(replyText, replyText));
+            // // By calling next() you ensure that the next BotHandler is run.
+            // await next();
         });
 
         this.onMembersAdded(async (context, next) => {
