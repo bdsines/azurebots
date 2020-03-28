@@ -1,0 +1,49 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "Image",
+      "url": "https://www.truckdrivingjobs.com/uploads/afb07164bd28c50614fe3daaf53e219d.jpg",
+      "size": "stretch"
+    },
+    {
+      "type": "TextBlock",
+      "spacing": "medium",
+      "size": "default",
+      "weight": "bolder",
+      "text": "Welcome to Driver Assistant!",
+      "wrap": true,
+      "maxLines": 0
+    },
+    {
+      "type": "TextBlock",
+      "size": "default",
+      "isSubtle": true,
+      "text": "Tap any quick actions below or type your question",
+      "wrap": true,
+      "maxLines": 0
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "Enter PTO (MAP)",
+      "url": "https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0"
+    },
+    {
+      
+            "type": "Action.Submit",
+            "title": "Chat with my DBL"
+        
+    },
+    {
+      
+            "type": "Action.Submit",
+            "title": "Other"
+        
+    }
+    
+  ]
+}
